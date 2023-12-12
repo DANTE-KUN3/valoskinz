@@ -1,0 +1,75 @@
+/* CSS Styles for Buy Component */
+
+/* Style for the item grid */
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Style for the item card */
+.item-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  background-color: #fff;
+}
+
+.item-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the item image */
+.item-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd; /* Add a border for separation */
+}
+
+/* Style for the item details */
+.item-details {
+  padding: 15px;
+}
+
+/* Style for the card header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Style for the item price */
+.item-price {
+  font-weight: bold;
+  color: #007bff; /* Highlight price with a different color */
+}
+
+/* Style for the card body and additional item info */
+.card-body {
+  margin-bottom: 8px;
+}
+
+.item-info {
+  margin-bottom: 8px;
+}
+
+/* Style for the message seller button */
+.message-seller-button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.message-seller-button:hover {
+  background-color: #0056b3;
+}

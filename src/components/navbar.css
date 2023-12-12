@@ -1,0 +1,55 @@
+/* Navbar styles */
+.navbar {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #fff; /* White background */
+    color: black; /* Black text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+  }
+  
+  /* Logo styles */
+  .logo img {
+    width: 100px;
+    height: auto; /* Adjust the width as needed */
+  }
+  
+  /* Links styles */
+  .links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: black; /* Black links */
+    font-weight: bold;
+  }
+  
+  /* Push logo to the left */
+  .links {
+    margin-left: auto;
+  }
+
+.signup-link{
+  margin-left: 50px;
+  margin-right: 20px;
+}
+
+
+/* Styling for authentication options */
+/* Other styles remain unchanged */
+
+/* Your existing styles */
+
+/* Authentication options dropdown */
+/* Styling for authentication options */
+/* Your existing styles */
+
+/* Authentication options dropdown */
+/* Your existing styles */
+
+/* Authentication options dropdown */
