@@ -1,55 +1,66 @@
-// MyAds.js
-
 import React, { useState, useEffect } from 'react';
-import './myads'; // Your CSS file for MyAds component
-import { db, auth } from '../../config/firebase'; 
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import  ;
-import MyAds from './MyAds';
-import Profile from './Profile';
-import UserProfile from './UserProfile';// Assuming you have Firebase initialized
+import Sidebar from '../sidebar/sidebar';
+import { auth, db } from '../../config/firebase';
+import { getDocs, collection, query, where } from 'firebase/firestore'; // Importing necessary Firestore functions
 
 const MyAds = () => {
-  const [userAds, setUserAds] = useState([]); // State to store fetched user ads
+  const [userItems, setUserItems] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUserItems = async () => {
       try {
-        const user = auth.currentUser;
-        if (user) {
-          const userAdsRef = db.collection('selling').where('userId', '==', user.uid); // Adjust the field name as per your schema
+        if (auth.currentUser) {
+          const q = query(collection(db, 'selling'), where('userid', '==', auth.currentUser.uid));
+          const querySnapshot = await getDocs(q);
 
-          const snapshot = await userAdsRef.get();
-          const adsData = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }));
-          setUserAds(adsData);
+          const items = [];
+          querySnapshot.forEach((doc) => {
+            items.push({ id: doc.id, ...doc.data() });
+          });
+
+          setUserItems(items);
+        } else {
+          // Handle case when user is not authenticated
+          console.log('User is not authenticated');
+          setUserItems([]); // Set items to an empty array or handle differently for unauthenticated users
         }
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error('Error fetching user items: ', error);
       }
     };
 
-    fetchData();
+    fetchUserItems();
   }, []);
 
   return (
-    <div className="main-layout">
-    <Sidebar />
-    <div className="content">
-      <Switch>
-        <Route path="/myads" component={MyAds} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/userprofile" component={UserProfile} />
-        {/* Add more routes for other pages */}
-      </Switch>
-    </div>
-  </div>
-);
+    <>
+      {auth.currentUser ? (
+        <div className="main-layout">
+          <Sidebar active="profile" />
+          <div className="main-content">
+            <div className="my-ads-container">
+              <h2 className='text-center'>My Ads</h2>
+              <div className="ads-grid">
+                {userItems.map((item) => (
+                  <div key={item.id} className="ad-item">
+                    {/* Display item details */}
+                    <p>Price: {item.price}</p>
+                    <p>Skin: {item.skin}</p>
+                    {/* Display other item details as needed */}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div>
+          {/* Display a message or redirect to login for unauthenticated users */}
+          <p>Please login to view your ads</p>
+        </div>
+      )}
+    </>
+  );
 };
-
-
 
 export default MyAds;

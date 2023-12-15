@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './buy.css'; // Your CSS file for Buy component
 import { db } from '../../config/firebase';
 import { getDocs, collection } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
 
 const Buy = () => {
   const [items, setItems] = useState([]); // State to store fetched items
@@ -43,9 +44,12 @@ const Buy = () => {
             <p className="item-info">Skin: {selling.skin}</p>
             <p className="item-info">Rank: {selling.rank}</p>
             {/* Additional details */}
-            <button className="message-seller-button" onClick={redirect}>
-              Message
-            </button>
+           <Link
+              to={`/messaging?sellerID=${selling.userID}`}
+              className="message-seller-link"
+            >
+              <button className="message-seller-button">Message</button>
+            </Link>
           </div>
         </div>
       </div>

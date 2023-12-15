@@ -73,3 +73,25 @@
 .message-seller-button:hover {
   background-color: #0056b3;
 }
+
+/* CSS */
+.message-seller-link {
+  text-decoration: none; /* Remove default link underline */
+}
+
+.message-seller-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.message-seller-button:hover {
+  background-color: #0056b3; /* Button color on hover */
+}

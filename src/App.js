@@ -9,6 +9,8 @@ import Profile from './page/profile/profile';
 import Signup from './page/signup/Signup';
 import Login from './page/login/login';
 import MyAds from './page/myads/myads';
+import UserProfile from './page/userprofile/userprofile';
+
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login/>} />
             <Route path="/myads" element={<MyAds/>} />
+            <Route path="/userprofile" element={<UserProfile/>} />
           </Routes>
         </AuthProvider>
       </Router>
